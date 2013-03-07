@@ -6,3 +6,4 @@ fr:
   label_reminder_edit: "Edition d'un rappel"
   field_start_at: "Du"
   field_end_at: "Au"
+  field_finished: "Terminé"
