@@ -1,7 +1,7 @@
 en:
   label_reminder: "Reminder"
   label_reminder_plural: "Reminders"
-  label_add_reminder: "Add a reminder"
+  label_reminder_add: "Add a reminder"
   label_reminder_new: "New reminder"
   label_reminder_edit: "Edit reminder"
   field_start_at: "From"
