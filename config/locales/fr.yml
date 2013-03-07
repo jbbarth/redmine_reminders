@@ -4,6 +4,7 @@ fr:
   label_reminder_add: "Ajouter un rappel"
   label_reminder_new: "Nouveau rappel"
   label_reminder_edit: "Edition d'un rappel"
+  label_color: "Couleur"
   field_start_at: "Du"
   field_end_at: "Au"
   field_finished: "Terminé"

@@ -4,13 +4,13 @@
     <div class=reminders>
       <h3><%= l(:label_reminder_plural) %></h3>
       <% reminders.each do |reminder| %>
-        <p class="reminder reminder-salmon">
+        <%= content_tag :p, :class => "reminder reminder-#{reminder.color}" do %>
           <%= reminder.text %>
           <em class=info>
             <%= reminder.user %> | 
             <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder) %>
           </em>
-        </p>
+        <% end %>
       <% end %>
     </div>
   <% end %>

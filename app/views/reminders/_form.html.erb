@@ -1,24 +1,46 @@
 <%= error_messages_for 'reminder' %>
 
 <!--[form:reminder]-->
-<div class="box tabular">
-  <p>
-    <%= f.text_area :text, :size => "40x3", :label => l(:label_string) %>
-  </p>
-  <p>
-    <%= f.text_field :start_at, :size => 10 %>
-    <%= calendar_for('reminder_start_at') %>
-  </p>
-  <p>
-    <%= f.text_field :end_at, :size => 10 %>
-    <%= calendar_for('reminder_end_at') %>
-  </p>
-  <p>
-    <%= f.check_box :finished %>
-  </p>
+<div class="splitcontentleft">
+  <div class="reminder-form box tabular">
+    <p>
+      <%= f.text_area :text, :size => "40x3", :label => l(:label_string) %>
+    </p>
+    <p>
+      <%= f.text_field :start_at, :size => 10 %>
+      <%= calendar_for('reminder_start_at') %>
+    </p>
+    <p>
+      <%= f.text_field :end_at, :size => 10 %>
+      <%= calendar_for('reminder_end_at') %>
+    </p>
+    <p>
+      <%= f.check_box :finished %>
+    </p>
+  </div>
+</div>
+<div class="splitcontentright">
+  <div class="reminder-form box tabular">
+    <noscript>
+      Your browser must be 10+ years old bro, sorry for you,
+      but this form won't work without Javascript!
+    </noscript>
+    <p>
+      <label><%= l(:label_color) %></label>
+      <span class=colors>
+        <% %w(salmon orange purple blue green grey).each do |color| %>
+          <%= content_tag(:span, "A", :class => "color reminder-#{color}", :data => { :color => color }) %>
+        <% end %>
+        <%= f.hidden_field :color %>
+      </span>
+    </p>
+  </div>
 </div>
 <!--[eoform:reminder]-->
 
+<div class=clear></div>
+
 <% content_for :header_tags do %>
   <%= stylesheet_link_tag 'reminders', :plugin => "redmine_reminders" %>
+  <%= javascript_include_tag 'reminders', :plugin => "redmine_reminders" %>
 <% end %>

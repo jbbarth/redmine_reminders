@@ -1,7 +1,17 @@
 .icon-reminder  { background-image: url(../images/clock_15.png); margin-right:6px; }
 .reminder-text { width:50%; background-color:#f3f3f9; padding:10px; }
+.reminder-form label { width:110px; margin-left:-120px; }
+.reminder-form p { padding-left:120px; }
+.reminder-form .colors { display:inline-block; padding:0; }
+.reminder-form .color { display:inline-block; margin:0 2px; font-weight:bold; padding:1px 5px 2px; border:3px solid #f6f6f6; }
+.reminder-form .color:hover { cursor:pointer; }
+.reminder-form .color.selected { border:3px solid #000; }
 .reminder { margin:5px 0; padding:12px; font-weight:bold; font-size:1.1em; }
-.reminder .info { font-weight:normal; text-shadow:none; font-size:normal; margin-top:0.6em; }
+.reminder .info { font-weight:normal; text-shadow:none; font-size:normal; margin-top:0.6em; color:#fff; }
 .redminder a, .reminder a:link, .reminder a:visited, .reminder a:hover { color:#fff; }
+.reminder-orange { background-color:#f85; color:#fff; text-shadow:1px 1px 1px #444; }
 .reminder-salmon { background-color:#f65857; color:#fff; text-shadow:1px 1px 1px #444; }
-.reminder-salmon .info { color:#fff; }
+.reminder-purple { background-color:#94f; color:#fff; text-shadow:1px 1px 1px #444; }
+.reminder-blue { background-color:#58f; color:#fff; text-shadow:1px 1px 1px #444; }
+.reminder-green { background-color:#2c6; color:#fff; text-shadow:1px 1px 1px #444; }
+.reminder-grey { background-color:#bbb; color:#fff; text-shadow:1px 1px 1px #444; }

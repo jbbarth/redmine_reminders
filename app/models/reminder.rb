@@ -7,4 +7,8 @@ class Reminder < ActiveRecord::Base
 
   scope :current, lambda{ where("finished = ? AND start_at <= ? AND end_at >= ?",
                                 false, Date.today, Date.today) }
+
+  def color
+    read_attribute(:color).presence || "salmon"
+  end
 end

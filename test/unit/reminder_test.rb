@@ -17,4 +17,9 @@ class ReminderTest < ActiveSupport::TestCase
     assert ! r2.in?(current_reminders)
     assert ! r3.in?(current_reminders)
   end
+
+  test "#color" do
+    assert_equal "salmon", Reminder.new.color
+    assert_equal "foo", Reminder.new(:color => "foo").color
+  end
 end

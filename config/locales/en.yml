@@ -4,6 +4,7 @@ en:
   label_reminder_add: "Add a reminder"
   label_reminder_new: "New reminder"
   label_reminder_edit: "Edit reminder"
+  label_color: "Color"
   field_start_at: "From"
   field_end_at: "To"
   field_finished: "Finished"
