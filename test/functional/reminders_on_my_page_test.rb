@@ -25,6 +25,6 @@ class RemindersOnMyPageTest < ActionController::IntegrationTest
 ###    assert_response :success
 ###    binding.pry
 ###    assert_select "p.blah", :count => 1
-###    assert_select "p.reminder", :count => 1
+###    assert_select "div.reminder", :count => 1
 ###  end
 end

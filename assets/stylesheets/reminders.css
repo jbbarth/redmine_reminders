@@ -7,8 +7,9 @@
 .reminder-form .color:hover { cursor:pointer; }
 .reminder-form .color.selected { border:3px solid #000; }
 .reminder { margin:5px 0; padding:12px; font-weight:bold; font-size:1.1em; }
+.reminder p { margin:0; padding:0; }
 .reminder .info { font-weight:normal; text-shadow:none; font-size:normal; margin-top:0.6em; color:#fff; }
-.redminder a, .reminder a:link, .reminder a:visited, .reminder a:hover { color:#fff; }
+.redminder a, .reminder a:link, .reminder a:visited, .reminder a:hover { color:#fff !important; }
 .reminder-orange { background-color:#f85; color:#fff; text-shadow:1px 1px 1px #444; }
 .reminder-salmon { background-color:#f65857; color:#fff; text-shadow:1px 1px 1px #444; }
 .reminder-purple { background-color:#94f; color:#fff; text-shadow:1px 1px 1px #444; }

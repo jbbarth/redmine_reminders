@@ -20,7 +20,7 @@
 <% @reminders.each do |reminder| %>
   <tr class="<%= cycle("odd", "even") %>">
     <td class="id"><%= reminder.id %></td>
-    <td class="text"><%= reminder.text %></td>
+    <td class="text"><%= textilizable reminder.text %></td>
     <td class="start_at"><%= format_date(reminder.start_at) %></td>
     <td class="end_at"><%= format_date(reminder.end_at) %></td>
     <td class="finished center"><%= checked_image reminder.finished? %></td>
