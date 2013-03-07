@@ -1,0 +1,7 @@
+fr:
+  label_reminder: "Rappel"
+  label_add_reminder: "Ajouter un rappel"
+  label_reminder_new: "Nouveau rappel"
+  label_reminder_edit: "Edition d'un rappel"
+  field_start_at: "Du"
+  field_end_at: "Au"

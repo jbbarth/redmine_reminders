@@ -1,0 +1,7 @@
+en:
+  label_reminder: "Reminder"
+  label_add_reminder: "Add a reminder"
+  label_reminder_new: "New reminder"
+  label_reminder_edit: "Edit reminder"
+  field_start_at: "From"
+  field_end_at: "To"
