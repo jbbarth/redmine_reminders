@@ -1,3 +1,11 @@
+<div class=contextual>
+  <%= link_to l(:button_delete), reminder_path(@reminder),
+              :data => {:confirm => l(:text_are_you_sure)},
+              :method => :delete, :class => 'icon icon-del'
+      #if User.current.allowed_to?(:delete_issues, @project)
+  %>
+</div>
+
 <h2><%= link_to l(:label_my_page), my_page_path %> &#187; <%=l(:label_reminder_edit) %></h2>
 
 <%= labelled_form_for @reminder, :url => reminder_path(@reminder), :html => { :class => nil } do |f| %>

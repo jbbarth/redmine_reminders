@@ -8,3 +8,8 @@ Deface::Override.new :virtual_path  => "my/page",
     <%= link_to l(:label_add_reminder), new_reminder_path, :class => "icon icon-reminder", :id => "new-reminder" %>
   )
 end
+
+Deface::Override.new :virtual_path  => "my/page",
+                     :name          => "add-visible-reminders-on-my-page",
+                     :insert_top    => "div.splitcontentright",
+                     :partial       => "reminders/boxes"
