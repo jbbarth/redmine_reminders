@@ -16,10 +16,11 @@ class RemindersControllerTest < ActionController::TestCase
     @request.session[:user_id] = 1 # admin
   end
 
-  test "#show" do
+  test "#index" do
     rem = create_reminder
-    get :show, :id => rem.id
+    get :index
     assert_response :success
+    assert assigns(:reminders).include?(rem)
   end
 
   test "#new" do
@@ -40,7 +41,7 @@ class RemindersControllerTest < ActionController::TestCase
       post :create, :reminder => { :text => "Hey!", :start_at => "2013-03-01", :end_at => "2013-03-03" }
     end
     rem = Reminder.last
-    assert_redirected_to reminder_path(rem.id)
+    assert_redirected_to reminders_path
     assert_equal "Hey!", rem.text
     assert_equal 1, rem.user_id
   end
@@ -55,14 +56,14 @@ class RemindersControllerTest < ActionController::TestCase
   test "#update" do
     rem = create_reminder
     put :update, :id => rem.id, :reminder => { :text => "Blah" }
-    assert_redirected_to reminder_path(rem.id)
+    assert_redirected_to reminders_path
   end
 
   test "#destroy" do
     rem = Reminder.create!(:text => "ToBeDestroyed", :user_id => 1,
                            :start_at => "2013-03-01", :end_at => "2013-03-03")
     delete :destroy, :id => rem.id
-    assert_redirected_to my_page_path
+    assert_redirected_to reminders_path
     assert_nil Reminder.find_by_text("ToBeDestroyed")
   end
 end

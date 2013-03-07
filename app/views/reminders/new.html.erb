@@ -1,4 +1,7 @@
-<h2><%= link_to l(:label_my_page), my_page_path %> &#187; <%=l(:label_reminder_new) %></h2>
+<h2>
+  <%= link_to l(:label_reminder_plural), reminders_path %>
+  &#187; <%=l(:label_reminder_new) %>
+</h2>
 
 <%= labelled_form_for @reminder, :url => reminders_path, :html => { :class => nil } do |f| %>
 	<%= render :partial => 'form', :locals => { :f => f } %>

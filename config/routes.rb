@@ -1,3 +1,3 @@
 RedmineApp::Application.routes.draw do
-  resources :reminders, :except => :index
+  resources :reminders, :except => :show
 end

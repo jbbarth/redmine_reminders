@@ -1,0 +1,47 @@
+<div class=contextual>
+  <%= link_to l(:label_add_reminder), new_reminder_path,
+              :class => "icon icon-reminder", :id => "new-reminder" %>
+</div>
+
+<h2><%= l(:label_reminder_plural) %></h2>
+
+<div class="autoscroll">
+<table class="list">
+  <thead><tr>
+    <th>#</th>
+    <th class=left><%= l(:label_string) %></th>
+    <th class=left><%= l(:field_start_at) %></th>
+    <th class=left><%= l(:field_end_at) %></th>
+    <th class=left><%= l(:field_finished) %></th>
+    <th class=left><%= l(:field_user) %> (<%= l(:field_updated_on).strip.downcase %>)</th>
+    <th class=left></th>
+  </tr></thead>
+  <tbody>
+<% @reminders.each do |reminder| %>
+  <tr class="<%= cycle("odd", "even") %>">
+    <td class="id"><%= reminder.id %></td>
+    <td class="text"><%= reminder.text %></td>
+    <td class="start_at"><%= format_date(reminder.start_at) %></td>
+    <td class="end_at"><%= format_date(reminder.end_at) %></td>
+    <td class="finished center"><%= checked_image reminder.finished? %></td>
+    <td class="user"><%= reminder.user %><em class=info>(<%= format_time(reminder.updated_at) %>)</em></td>
+    <td class="buttons">
+      <%= link_to l(:button_edit), edit_reminder_path(reminder), :class => "icon icon-edit" %>
+      <%= link_to l(:button_delete), reminder_path(reminder),
+                  :data => {:confirm => l(:text_are_you_sure)},
+                  :method => :delete, :class => 'icon icon-del'
+          #if User.current.allowed_to?(:delete_issues, @project)
+      %>
+    </td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+</div>
+<p class="pagination"><%= pagination_links_full @reminder_pages, @reminder_count %></p>
+
+<% html_title(l(:label_reminder_plural)) -%>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'reminders', :plugin => "redmine_reminders" %>
+<% end %>
