@@ -1,7 +1,7 @@
 .icon-reminder  { background-image: url(../images/clock_15.png); margin-right:6px; }
 .reminder-text { width:50%; background-color:#f3f3f9; padding:10px; }
-.reminder { margin:5px 0; padding:10px; font-weight:bold; font-size:1.1em; }
-.reminder .info { font-weight:normal; text-shadow:none; font-size:normal; }
+.reminder { margin:5px 0; padding:12px; font-weight:bold; font-size:1.1em; }
+.reminder .info { font-weight:normal; text-shadow:none; font-size:normal; margin-top:0.6em; }
 .redminder a, .reminder a:link, .reminder a:visited, .reminder a:hover { color:#fff; }
 .reminder-salmon { background-color:#f65857; color:#fff; text-shadow:1px 1px 1px #444; }
 .reminder-salmon .info { color:#fff; }
