@@ -7,7 +7,10 @@
   %>
 </div>
 
-<h2><%= l(:label_reminder) %> <%= @reminder.id %></h2>
+<h2>
+  <%= link_to l(:label_my_page), my_page_path %> &#187;
+  <%= l(:label_reminder) %> <%= @reminder.id %>
+</h2>
 
 <p class=reminder-dates>
   <%= l(:label_date_from_to, :start => format_date(@reminder.start_at),
