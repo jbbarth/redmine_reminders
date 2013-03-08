@@ -19,6 +19,7 @@ You can first take a look at general instructions for plugins [here](http://www.
 Then :
 * clone this repository in your "plugins/" directory ; if you have a doubt you put it at the good level, you can check you have a plugins/redmine_reminders/init.rb file
 * run the migrations from your redmine root directory with command : `RAILS_ENV=production rake redmine:plugins`
+* install dependencies (gems) by running the following command: `bundle install`
 * restart your Redmine instance (depends on how you host it)
 
 Contribute
