@@ -4,11 +4,13 @@ Redmine Redminders plugin
 This plugin adds the ability to define reminders for important stuff. The
 reminders appear on /my/page but I may add them everywhere later.
 
-# Screenshot
+Screenshot
+----------
 
 ![redmine_reminders screenshot](http://jbbarth.com/screenshots/redmine_reminders.png)
 
-# Install
+Install
+-------
 
 This plugin is compatible with Redmine 2.1.x and 2.2.x, and should be compatible with future versions.
 
@@ -19,7 +21,8 @@ Then :
 * run the migrations from your redmine root directory with command : `RAILS_ENV=production rake redmine:plugins`
 * restart your Redmine instance (depends on how you host it)
 
-# Contribute
+Contribute
+----------
 
 If you like this plugin, it's a good idea to contribute :
 * by giving feed back on what is cool, what should be improved
