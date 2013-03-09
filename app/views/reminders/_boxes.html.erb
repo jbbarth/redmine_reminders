@@ -1,6 +1,6 @@
 <% if User.current.allowed_to?(:view_reminders, nil, :global => true) %>
   <% cache ["reminders-on-my-page", Date.today, Reminder.order("updated_at").last] do %>
-    <% reminders = Reminder.current.order("end_at") %>
+    <% reminders = Reminder.visible.current.order("end_at") %>
     <% if reminders.any? %>
       <div class=reminders>
         <h3><%= l(:label_reminder_plural) %></h3>

@@ -36,6 +36,27 @@
       </span>
     </p>
   </div>
+<% if Redmine::Plugin.installed?(:redmine_organizations) %>
+  <div class="reminder-form box tabular">
+    <p>
+      <label><%= l(:label_visibility) %></label>
+      <span class=visibility>
+        <label class=inline>
+          <%= f.radio_button "visibility", "organization:#{User.current.organization_id}", :checked => @reminder.visibility != "all" %>
+          <%= User.current.organization.fullname %>
+        </label>
+        <br>
+        <label class=inline>
+          <%= f.radio_button "visibility", "all" %>
+          <%= l(:label_all_authorized_users) %>
+          (<%= Role.all.select{|r|r.has_permission?(:view_reminders)}.map(&:name).join(", ") %>)
+        </label>
+      </span>
+    </p>
+  </div>
+<% else %>
+  <%= f.hidden_field :visibility, :value => "all" %>
+<% end %>
 </div>
 <!--[eoform:reminder]-->
 

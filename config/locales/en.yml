@@ -5,6 +5,8 @@ en:
   label_reminder_new: "New reminder"
   label_reminder_edit: "Edit reminder"
   label_color: "Color"
+  label_visibility: "Visibility"
+  label_all_authorized_users: "All authorized users"
   field_start_at: "From"
   field_end_at: "To"
   field_finished: "Finished"

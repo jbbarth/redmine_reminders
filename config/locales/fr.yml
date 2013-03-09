@@ -5,6 +5,8 @@ fr:
   label_reminder_new: "Nouveau rappel"
   label_reminder_edit: "Edition d'un rappel"
   label_color: "Couleur"
+  label_visibility: "Visibilité"
+  label_all_authorized_users: "Tous les utilisateurs autorisés"
   field_start_at: "Du"
   field_end_at: "Au"
   field_finished: "Terminé"
