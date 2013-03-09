@@ -8,7 +8,7 @@
           <%= textilizable reminder.text %>
           <em class=info>
             <%= reminder.user %> | 
-            <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder) %>
+            <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder, :back_url => my_page_path) %>
           </em>
         <% end %>
       <% end %>

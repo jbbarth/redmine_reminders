@@ -3,6 +3,7 @@
 <!--[form:reminder]-->
 <div class="splitcontentleft">
   <div class="reminder-form box tabular">
+    <%= hidden_field_tag :back_url, params[:back_url] %>
     <p>
       <%= f.text_area :text, :size => "40x3", :label => l(:label_string) %>
     </p>
