@@ -7,6 +7,7 @@ class Reminder < ActiveRecord::Base
 
   scope :current, lambda{ where("finished = ? AND start_at <= ? AND end_at >= ?",
                                 false, Date.today, Date.today) }
+  scope :visible, lambda{ where("visibility IS NULL OR visibility = 'all' OR visibility = 'organization:#{User.current.organization_id}'") }
 
   def color
     read_attribute(:color).presence || "salmon"
