@@ -1,4 +1,4 @@
-<% cache [Date.today, Reminder.current.order("updated_at").last] do %>
+<% cache [Date.today, Reminder.order("updated_at").last] do %>
   <% reminders = Reminder.current.order("end_at") %>
   <% if reminders.any? %>
     <div class=reminders>
