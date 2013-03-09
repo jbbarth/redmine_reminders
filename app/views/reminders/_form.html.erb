@@ -8,11 +8,11 @@
       <%= f.text_area :text, :size => "40x3", :label => l(:label_string) %>
     </p>
     <p>
-      <%= f.text_field :start_at, :size => 10 %>
+      <%= f.text_field :start_at, :value => (@reminder.start_at || Date.today).strftime("%Y-%m-%d"), :size => 11 %>
       <%= calendar_for('reminder_start_at') %>
     </p>
     <p>
-      <%= f.text_field :end_at, :size => 10 %>
+      <%= f.text_field :end_at, :value => (@reminder.end_at || Date.today).strftime("%Y-%m-%d"), :size => 11 %>
       <%= calendar_for('reminder_end_at') %>
     </p>
     <p>
