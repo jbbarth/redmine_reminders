@@ -25,7 +25,7 @@ class RemindersController < ApplicationController
     @reminder.user_id = User.current.id
     if @reminder.save
       flash[:notice] = l(:notice_successful_create)
-      redirect_to reminders_path
+      redirect_back_or_default reminders_path
     else
       render :action => "new"
     end

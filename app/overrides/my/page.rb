@@ -5,7 +5,7 @@ Deface::Override.new :virtual_path  => "my/page",
     <% content_for :header_tags do %>
       <%= stylesheet_link_tag "reminders", :plugin => "redmine_reminders" %>
     <% end %>
-    <%= link_to l(:label_reminder_add), new_reminder_path, :class => "icon icon-reminder", :id => "new-reminder" %>
+    <%= link_to l(:label_reminder_add), new_reminder_path(:back_url => my_page_path), :class => "icon icon-reminder", :id => "new-reminder" %>
   )
 end
 

@@ -46,6 +46,11 @@ class RemindersControllerTest < ActionController::TestCase
     assert_equal 1, rem.user_id
   end
 
+  test "#create with back_url" do
+    post :create, :reminder => { :text => "Hey!", :start_at => "2013-03-01", :end_at => "2013-03-03" }, :back_url => "/my/page"
+    assert_redirected_to my_page_path
+  end
+
   test "#edit" do
     rem = create_reminder
     get :edit, :id => rem.id
