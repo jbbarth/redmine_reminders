@@ -29,7 +29,7 @@
     <p>
       <label><%= l(:label_color) %></label>
       <span class=colors>
-        <% %w(salmon orange purple blue green grey).each do |color| %>
+        <% %w(salmon orange purple blue green clearblue grey).each do |color| %>
           <%= content_tag(:span, "A", :class => "color reminder-#{color}", :data => { :color => color }) %>
         <% end %>
         <%= f.hidden_field :color, :value => @reminder.color %>
