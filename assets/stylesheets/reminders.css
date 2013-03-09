@@ -1,5 +1,4 @@
 .icon-reminder  { background-image: url(../images/clock_15.png); margin-right:6px; }
-.reminder-text { width:50%; background-color:#f3f3f9; padding:10px; }
 .reminder-form label { width:110px; margin-left:-120px; }
 .reminder-form p { padding-left:120px; }
 .reminder-form .colors { display:inline-block; padding:0; }
