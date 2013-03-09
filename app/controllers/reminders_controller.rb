@@ -37,7 +37,7 @@ class RemindersController < ApplicationController
   def update
     if @reminder.update_attributes(params[:reminder].merge(:user_id => User.current.id))
       flash[:notice] = l(:notice_successful_update)
-      redirect_to reminders_path
+      redirect_back_or_default reminders_path
     else
       render :action => "edit"
     end

@@ -59,6 +59,12 @@ class RemindersControllerTest < ActionController::TestCase
     assert_redirected_to reminders_path
   end
 
+  test "#update with back_url" do
+    rem = create_reminder
+    put :update, :id => rem.id, :reminder => { :text => "Blah" }, :back_url => "/my/page"
+    assert_redirected_to my_page_path
+  end
+
   test "#destroy" do
     rem = Reminder.create!(:text => "ToBeDestroyed", :user_id => 1,
                            :start_at => "2013-03-01", :end_at => "2013-03-03")
