@@ -1,7 +1,7 @@
 class RemindersController < ApplicationController
   unloadable
 
-  before_filter :require_login
+  before_filter :authorize_global
   before_filter :find_reminder, :except => [:new, :create, :index]
 
   def index

@@ -8,3 +8,6 @@ fr:
   field_start_at: "Du"
   field_end_at: "Au"
   field_finished: "Terminé"
+  project_module_reminders: "Rappels"
+  permission_view_reminders: "Voir les rappels"
+  permission_manage_reminders: "Gérer les rappels"

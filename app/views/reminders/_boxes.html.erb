@@ -1,19 +1,21 @@
-<% cache [Date.today, Reminder.order("updated_at").last] do %>
-  <% reminders = Reminder.current.order("end_at") %>
-  <% if reminders.any? %>
-    <div class=reminders>
-      <h3><%= l(:label_reminder_plural) %></h3>
-      <% reminders.each do |reminder| %>
-        <%= content_tag :div, :class => "reminder reminder-#{reminder.color}" do %>
-          <%= textilizable reminder.text %>
-          <em class=info>
-            <%= reminder.user %> |
-            <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder, :back_url => my_page_path) %> |
-            <%= link_to l(:field_finished).downcase, reminder_path(reminder, :back_url => my_page_path, :reminder => {:finished=>1}), :method => :put %>
-          </em>
+<% if User.current.allowed_to?(:view_reminders, nil, :global => true) %>
+  <% cache ["reminders-on-my-page", Date.today, Reminder.order("updated_at").last] do %>
+    <% reminders = Reminder.current.order("end_at") %>
+    <% if reminders.any? %>
+      <div class=reminders>
+        <h3><%= l(:label_reminder_plural) %></h3>
+        <% reminders.each do |reminder| %>
+          <%= content_tag :div, :class => "reminder reminder-#{reminder.color}" do %>
+            <%= textilizable reminder.text %>
+            <em class=info>
+              <%= reminder.user %> |
+              <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder, :back_url => my_page_path) %> |
+              <%= link_to l(:field_finished).downcase, reminder_path(reminder, :back_url => my_page_path, :reminder => {:finished=>1}), :method => :put %>
+            </em>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-    <div class=clear></div>
+      </div>
+      <div class=clear></div>
+    <% end %>
   <% end %>
 <% end %>

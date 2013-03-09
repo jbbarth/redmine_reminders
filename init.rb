@@ -6,6 +6,10 @@ Redmine::Plugin.register :redmine_reminders do
   requires_redmine :version_or_higher => '2.1.0'
   version '0.0.1'
   url 'https://github.com/jbbarth/redmine_reminders'
+  project_module :reminders do
+    permission :view_reminders, { :reminders => [:index] }
+    permission :manage_reminders, { :reminders => [:new, :create, :edit, :update, :destroy] }
+  end
 end
 
 # Little hack for using the 'deface' gem in redmine:

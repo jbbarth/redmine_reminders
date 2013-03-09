@@ -8,3 +8,6 @@ en:
   field_start_at: "From"
   field_end_at: "To"
   field_finished: "Finished"
+  project_module_reminders: "Reminders"
+  permission_view_reminders: "View reminders"
+  permission_manage_reminders: "Manage reminders"
