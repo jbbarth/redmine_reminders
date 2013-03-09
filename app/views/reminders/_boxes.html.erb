@@ -7,8 +7,9 @@
         <%= content_tag :div, :class => "reminder reminder-#{reminder.color}" do %>
           <%= textilizable reminder.text %>
           <em class=info>
-            <%= reminder.user %> | 
-            <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder, :back_url => my_page_path) %>
+            <%= reminder.user %> |
+            <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder, :back_url => my_page_path) %> |
+            <%= link_to l(:field_finished).downcase, reminder_path(reminder, :back_url => my_page_path, :reminder => {:finished=>1}), :method => :put %>
           </em>
         <% end %>
       <% end %>
