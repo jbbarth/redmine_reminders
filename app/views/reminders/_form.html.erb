@@ -49,12 +49,14 @@
         </label>
         <br>
       <% end %>
+      <% if User.current.organization.present? %>
         <label class=inline>
           <%= f.radio_button "visibility", "organization:#{User.current.organization_id}",
                              :checked => ($1.to_i == User.current.organization_id) || ($1.blank? && @reminder.visibility != "all") %>
           <%= User.current.organization.fullname %>
         </label>
         <br>
+      <% end %>
         <label class=inline>
           <%= f.radio_button "visibility", "all" %>
           <%= l(:label_all_authorized_users) %>
