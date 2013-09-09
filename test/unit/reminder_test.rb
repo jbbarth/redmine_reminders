@@ -33,6 +33,8 @@ class ReminderTest < ActiveSupport::TestCase
     assert Reminder.create(opts).in?(Reminder.visible)
   end
 
+  test "#visible returns all reminders for administrators"
+
   test "#color" do
     assert_equal "salmon", Reminder.new.color
     assert_equal "foo", Reminder.new(:color => "foo").color
