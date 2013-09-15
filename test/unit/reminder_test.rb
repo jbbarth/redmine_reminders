@@ -26,14 +26,19 @@ class ReminderTest < ActiveSupport::TestCase
   end
 
   test "#visible restricts visibility to an organization if 'organization:X'" do
-    u = User.current = User.find(1)
+    u = User.current = User.find(2) #non-admin
     opts = {:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now, :visibility => "organization:53"}
     assert ! Reminder.create(opts).in?(Reminder.visible)
     def u.organization_id; 53; end
     assert Reminder.create(opts).in?(Reminder.visible)
   end
 
-  test "#visible returns all reminders for administrators"
+  test "#visible returns all reminders for administrators" do
+    u = User.current = User.find(1) #admin
+    opts = {:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now, :visibility => "organization:53"}
+    assert Reminder.create(opts).in?(Reminder.visible)
+  end
+
 
   test "#color" do
     assert_equal "salmon", Reminder.new.color
