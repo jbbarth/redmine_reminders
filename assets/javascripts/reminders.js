@@ -7,7 +7,7 @@ function resetReminderColorSelection() {
   $(".colors .color").each(function() { $(this).removeClass("selected") })
 }
 function selectReminderColor(color) {
-  $(".color.[data-color="+color+"]").addClass("selected")
+  $(".color[data-color="+color+"]").addClass("selected")
   $("#reminder_color").val(color)
 }
 function updateFieldOnReminderColorChange(color) {
