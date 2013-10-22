@@ -10,8 +10,10 @@ class Reminder < ActiveRecord::Base
   scope :visible, lambda{
     if User.current.admin?
       scoped
-    else
+    elsif User.current.respond_to?(:organization_id)
       where("visibility IS NULL OR visibility = 'all' OR visibility = 'organization:#{User.current.organization_id}'")
+    else
+      where("visibility IS NULL OR visibility = 'all'")
     end
   }
 
