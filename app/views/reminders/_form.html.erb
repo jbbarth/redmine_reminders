@@ -41,6 +41,11 @@
     <p>
       <label><%= l(:label_visibility) %></label>
       <span class=visibility>
+        <label class=inline>
+          <%= f.radio_button "visibility", "all" %>
+          <%= l(:label_all_authorized_users) %>
+          (<%= Role.all.select{|r|r.has_permission?(:view_reminders)}.map(&:name).join(", ") %>)
+        </label>
       <% orga_id = "#{@reminder.visibility}".scan(/^organization:(\d+)/) %>
       <% if $1 && $1.to_i != User.current.organization_id && other_organization = Organization.find_by_id($1) %>
         <label class=inline>
@@ -50,18 +55,17 @@
         <br>
       <% end %>
       <% if User.current.organization.present? %>
-        <label class=inline>
-          <%= f.radio_button "visibility", "organization:#{User.current.organization_id}",
-                             :checked => ($1.to_i == User.current.organization_id) || ($1.blank? && @reminder.visibility != "all") %>
-          <%= User.current.organization.fullname %>
-        </label>
-        <br>
+        <% base_org = User.current.organization %>
+        <% potential_organizations = base_org.ancestors + base_org.self_and_siblings.map{|o| o.self_and_descendants}.flatten %>
+        <% potential_organizations.each do |organization| %>
+          <br>
+          <label class=inline>
+            <%= f.radio_button "visibility", "organization:#{organization.id}",
+                              :checked => ($1.to_i == organization.id) || ($1.blank? && @reminder.visibility != "all") %>
+            <%= organization.fullname %>
+          </label>
+        <% end %>
       <% end %>
-        <label class=inline>
-          <%= f.radio_button "visibility", "all" %>
-          <%= l(:label_all_authorized_users) %>
-          (<%= Role.all.select{|r|r.has_permission?(:view_reminders)}.map(&:name).join(", ") %>)
-        </label>
       </span>
     </p>
   </div>

@@ -9,8 +9,8 @@ class RemindersController < ApplicationController
 
     @limit = per_page_option
     @reminder_count = scope.count
-    @reminder_pages = Paginator.new self, @reminder_count, @limit, params[:page]
-    @offset ||= @reminder_pages.current.offset
+    @reminder_pages = Paginator.new @reminder_count, @limit, params[:page]
+    @offset ||= @reminder_pages.offset
     @reminders =  scope.order("updated_at desc, end_at desc").limit(@limit).offset(@offset)
 
     render :layout => !request.xhr?
