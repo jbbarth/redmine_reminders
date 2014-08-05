@@ -11,7 +11,11 @@ class Reminder < ActiveRecord::Base
     if User.current.admin?
       scoped
     elsif User.current.respond_to?(:organization_id)
-      where("visibility IS NULL OR visibility = 'all' OR visibility = 'organization:#{User.current.organization_id}'")
+      condition = ""
+      (User.current.organization.ancestors | [User.current.organization]).each do |organization|
+        condition << "OR visibility = 'organization:#{organization.id}' "
+      end
+      where("visibility IS NULL OR visibility = 'all' #{condition}")
     else
       where("visibility IS NULL OR visibility = 'all'")
     end
