@@ -25,12 +25,15 @@ class ReminderTest < ActiveSupport::TestCase
     assert Reminder.create(opts.merge(:visibility => "all")).in?(Reminder.visible)
   end
 
-  test "#visible restricts visibility to an organization if 'organization:X'" do
-    u = User.current = User.find(2) #non-admin
-    opts = {:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now, :visibility => "organization:53"}
-    assert ! Reminder.create(opts).in?(Reminder.visible)
-    def u.organization_id; 53; end
-    assert Reminder.create(opts).in?(Reminder.visible)
+  if Redmine::Plugin.installed?(:redmine_organizations)
+    test "#visible restricts visibility to an organization if 'organization:X'" do
+      new_organization = Organization.new(name: "new organization")
+      u = User.current = User.find(2) #non-admin
+      opts = {:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now, :visibility => "organization:#{new_organization.id}"}
+      assert ! Reminder.create(opts).in?(Reminder.visible)
+      u.organization = new_organization
+      assert Reminder.create(opts).in?(Reminder.visible)
+    end
   end
 
   test "#visible returns all reminders for administrators" do

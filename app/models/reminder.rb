@@ -12,8 +12,10 @@ class Reminder < ActiveRecord::Base
       scoped
     elsif User.current.respond_to?(:organization_id)
       organization_branch_items = []
-      (User.current.organization.ancestors | [User.current.organization]).each do |organization|
-        organization_branch_items << "organization:#{organization.id}"
+      if User.current.organization
+        (User.current.organization.ancestors | [User.current.organization]).each do |organization|
+          organization_branch_items << "organization:#{organization.id}"
+        end
       end
       where("visibility IS NULL OR visibility = 'all' OR visibility IN (?)", organization_branch_items)
     else
