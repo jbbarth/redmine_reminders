@@ -46,24 +46,29 @@
           <%= l(:label_all_authorized_users) %>
           (<%= Role.all.select{|r|r.has_permission?(:view_reminders)}.map(&:name).join(", ") %>)
         </label>
+        <br>
+      <% if User.current.organization.present? %>
+        <% base_org = User.current.organization %>
+        <% potential_organizations = base_org.ancestors + base_org.self_and_siblings.map{|o| o.self_and_descendants}.flatten %>
+      <% end %>
       <% orga_id = "#{@reminder.visibility}".scan(/^organization:(\d+)/) %>
-      <% if $1 && $1.to_i != User.current.organization_id && other_organization = Organization.find_by_id($1) %>
+      <% other_organization = Organization.find_by_id($1) if $1 %>
+      <% if other_organization && $1.to_i != User.current.organization_id && !potential_organizations.include?(other_organization)  %>
         <label class=inline>
           <%= f.radio_button "visibility", "organization:#{$1}", :checked => true %>
           <%= other_organization.fullname %>
         </label>
         <br>
       <% end %>
-      <% if User.current.organization.present? %>
-        <% base_org = User.current.organization %>
-        <% potential_organizations = base_org.ancestors + base_org.self_and_siblings.map{|o| o.self_and_descendants}.flatten %>
-        <% potential_organizations.each do |organization| %>
-          <br>
-          <label class=inline>
+      <% if potential_organizations.present? %>
+        <% Organization.organization_tree(potential_organizations) do |organization, level| %>
+          <label class=inline style="<%=  %>">
             <%= f.radio_button "visibility", "organization:#{organization.id}",
-                              :checked => ($1.to_i == organization.id) || ($1.blank? && @reminder.visibility != "all") %>
-            <%= organization.fullname %>
+                              :checked => ($1.to_i == organization.id) || ($1.blank? && @reminder.visibility != "all"),
+                              :style => "margin-left: #{(3 + (15 * level)).to_s + 'px;'}" %>
+            <%= organization.name %>
           </label>
+          <br>
         <% end %>
       <% end %>
       </span>
