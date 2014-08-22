@@ -1,14 +1,14 @@
-require File.expand_path('../../test_helper', __FILE__)
+require "spec_helper"
 
-class ReminderTest < ActiveSupport::TestCase
+describe "Reminder" do
   fixtures :users
 
-  test "#create" do
+  it "should #create" do
     assert_not_nil Reminder.create(:text => "Hep!", :user_id => 1,
                                    :start_at => "2012-01-01", :end_at => "2012-02-01")
   end
 
-  test "#current" do
+  it "should #current" do
     r1 = Reminder.create!(:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now)
     r2 = Reminder.create!(:text => "Should not see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.ago)
     r3 = Reminder.create!(:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now, :finished => true)
@@ -18,7 +18,7 @@ class ReminderTest < ActiveSupport::TestCase
     assert ! r3.in?(current_reminders)
   end
 
-  test "#visible doesn't restrict visibility for 'all' or nil" do
+  it "should #visible doesn't restrict visibility for 'all' or nil" do
     User.current = nil
     opts = {:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now}
     assert Reminder.create(opts).in?(Reminder.visible)
@@ -26,7 +26,7 @@ class ReminderTest < ActiveSupport::TestCase
   end
 
   if Redmine::Plugin.installed?(:redmine_organizations)
-    test "#visible restricts visibility to an organization if 'organization:X'" do
+    it "#visible restricts visibility to an organization if 'organization:X'" do
       new_organization = Organization.new(name: "new organization")
       u = User.current = User.find(2) #non-admin
       opts = {:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now, :visibility => "organization:#{new_organization.id}"}
@@ -36,15 +36,15 @@ class ReminderTest < ActiveSupport::TestCase
     end
   end
 
-  test "#visible returns all reminders for administrators" do
+  it "should #visible returns all reminders for administrators" do
     u = User.current = User.find(1) #admin
     opts = {:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now, :visibility => "organization:53"}
     assert Reminder.create(opts).in?(Reminder.visible)
   end
 
 
-  test "#color" do
-    assert_equal "salmon", Reminder.new.color
-    assert_equal "foo", Reminder.new(:color => "foo").color
+  it "should #color" do
+    Reminder.new.color.should == "salmon"
+    Reminder.new(:color => "foo").color.should == "foo"
   end
 end
