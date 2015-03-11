@@ -1,4 +1,4 @@
-<% if User.current.allowed_to?(:view_reminders, nil, :global => true) %>
+<% if User.current.allowed_to?(:view_reminders, nil, :global => true) && action_name!="flashs" %>
   <% cache ["reminders-on-my-page", "v2", Date.today, User.current, Reminder.maximum(:updated_at)] do %>
     <% reminders = Reminder.visible.current.order("end_at") %>
     <% if reminders.any? %>
@@ -9,8 +9,8 @@
             <%= textilizable reminder.text %>
             <em class=info>
               <%= reminder.user %> |
-              <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder, :back_url => my_page_path) %> |
-              <%= link_to l(:field_finished).downcase, reminder_path(reminder, :back_url => my_page_path, :reminder => {:finished=>1}), :method => :put %>
+              <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder, :back_url => issues_path) %> |
+              <%= link_to l(:field_finished).downcase, reminder_path(reminder, :back_url => issues_path, :reminder => {:finished=>1}), :method => :put %>
             </em>
           <% end %>
         <% end %>
