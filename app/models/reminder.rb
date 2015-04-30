@@ -9,7 +9,7 @@ class Reminder < ActiveRecord::Base
                                 false, Date.today, Date.today) }
   scope :visible, lambda{
     if User.current.admin?
-      scoped
+      all
     elsif User.current.respond_to?(:organization_id)
       organization_branch_items = []
       if User.current.organization
