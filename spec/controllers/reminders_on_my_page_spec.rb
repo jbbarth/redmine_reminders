@@ -1,7 +1,7 @@
 require "spec_helper"
 require File.expand_path('../../../app/overrides/my/page', __FILE__)
 
-describe "RemindersOnMyPage" do
+describe "RemindersOnMyPage", type: :integration do
   fixtures :projects, :trackers, :issue_statuses, :issues,
            :enumerations, :users, :issue_categories,
            :projects_trackers, :roles, :member_roles,
@@ -16,15 +16,18 @@ describe "RemindersOnMyPage" do
   end
 
   #TODO: make test work ; seems deface overrides are not included in test environment (?)
-  it "should see current reminders on /my/page"
-###  do
-###    Reminder.create!(:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now)
-###    Reminder.create!(:text => "Should not see", :user_id => 1, :start_at => "2000-03-01", :end_at => "2000-03-03")
-###    log_user("admin", "admin")
-###    get "/my/page"
-###    assert_response :success
-###    binding.pry
-###    assert_select "p.blah", :count => 1
-###    assert_select "div.reminder", :count => 1
-###  end
+  it "should see current reminders on /my/page" do
+=begin
+    Reminder.create!(:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now)
+    Reminder.create!(:text => "Should not see", :user_id => 1, :start_at => "2000-03-01", :end_at => "2000-03-03")
+    log_user("admin", "admin")
+    get "/my/page"
+    assert_response :success
+    binding.pry
+    assert_select "p.blah", :count => 1
+    assert_select "div.reminder", :count => 1
+  end
+=end
+  end
+
 end
