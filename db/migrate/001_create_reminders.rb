@@ -5,7 +5,7 @@ class CreateReminders < ActiveRecord::Migration
       t.date :start_at
       t.date :end_at
       t.integer :user_id
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
