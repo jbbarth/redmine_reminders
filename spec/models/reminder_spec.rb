@@ -4,7 +4,7 @@ describe "Reminder" do
   fixtures :users
 
   it "should #create" do
-    assert_not_nil Reminder.create(:text => "Hep!", :user_id => 1,
+    refute_nil Reminder.create(:text => "Hep!", :user_id => 1,
                                    :start_at => "2012-01-01", :end_at => "2012-02-01")
   end
 
@@ -44,7 +44,7 @@ describe "Reminder" do
 
 
   it "should #color" do
-    Reminder.new.color.should == "salmon"
-    Reminder.new(:color => "foo").color.should == "foo"
+    expect(Reminder.new.color).to eq "salmon"
+    expect(Reminder.new(:color => "foo").color).to eq "foo"
   end
 end

@@ -22,21 +22,21 @@ describe RemindersController do
   it "should #index" do
     rem = create_reminder
     get :index
-    response.should be_success
+    expect(response).to be_success
     assert assigns(:reminders).include?(rem)
   end
 
   it "should #new" do
     get :new
-    response.should be_success
+    expect(response).to be_success
     assert_template "new"
   end
 
   it "should #create with validation failure" do
     post :create, :reminder => { :text => "" }
-    response.should be_success
+    expect(response).to be_success
     assert_template "new"
-    assert_tag :tag => "div", :attributes => { :id => "errorExplanation" }
+    assert_select "div[id='errorExplanation']"
   end
 
   it "should #create" do
@@ -44,40 +44,40 @@ describe RemindersController do
       post :create, :reminder => { :text => "Hey!", :start_at => "2013-03-01", :end_at => "2013-03-03" }
     end
     rem = Reminder.last
-    response.should redirect_to(reminders_path)
-    rem.text.should == "Hey!"
-    rem.user_id.should == 1
+    expect(response).to redirect_to(reminders_path)
+    expect(rem.text).to eq "Hey!"
+    expect(rem.user_id).to eq 1
   end
 
   it "should #create with back_url" do
     post :create, :reminder => { :text => "Hey!", :start_at => "2013-03-01", :end_at => "2013-03-03" }, :back_url => "/my/page"
-    response.should redirect_to(my_page_path)
+    expect(response).to redirect_to(my_page_path)
   end
 
   it "should #edit" do
     rem = create_reminder
     get :edit, :id => rem.id
-    response.should be_success
+    expect(response).to be_success
     assert_template "edit"
   end
 
   it "should #update" do
     rem = create_reminder
     put :update, :id => rem.id, :reminder => { :text => "Blah" }
-    response.should redirect_to(reminders_path)
+    expect(response).to redirect_to(reminders_path)
   end
 
   it "should #update with back_url" do
     rem = create_reminder
     put :update, :id => rem.id, :reminder => { :text => "Blah" }, :back_url => "/my/page"
-    response.should redirect_to(my_page_path)
+    expect(response).to redirect_to(my_page_path)
   end
 
   it "should #destroy" do
     rem = Reminder.create!(:text => "ToBeDestroyed", :user_id => 1,
                            :start_at => "2013-03-01", :end_at => "2013-03-03")
     delete :destroy, :id => rem.id
-    response.should redirect_to(reminders_path)
+    expect(response).to redirect_to(reminders_path)
     assert_nil Reminder.find_by_text("ToBeDestroyed")
   end
 end

@@ -5,6 +5,8 @@ class Reminder < ActiveRecord::Base
 
   validates_presence_of :text, :start_at, :end_at, :user_id
 
+  attr_accessible :text, :user_id, :start_at, :end_at, :visibility, :color, :finished
+
   scope :current, lambda{ where("finished = ? AND start_at <= ? AND end_at >= ?",
                                 false, Date.today, Date.today) }
   scope :visible, lambda{
