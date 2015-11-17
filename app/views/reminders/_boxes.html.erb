@@ -9,8 +9,8 @@
             <%= textilizable reminder.text %>
             <em class=info>
               <%= reminder.user %> |
-              <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder, :back_url => issues_path) %> |
-              <%= link_to l(:field_finished).downcase, reminder_path(reminder, :back_url => issues_path, :reminder => {:finished=>1}), :method => :put %>
+              <%= link_to l(:button_edit).downcase, edit_reminder_path(reminder, :back_url => project_issues_path(Project.first)) %> |
+              <%= link_to l(:field_finished).downcase, reminder_path(reminder, :back_url => project_issues_path(Project.first), :reminder => {:finished=>1}), :method => :put %>
             </em>
           <% end %>
         <% end %>

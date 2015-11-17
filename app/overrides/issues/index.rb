@@ -1,16 +1,15 @@
 Deface::Override.new :virtual_path  => "issues/index",
                      :name          => "add-new-reminder-link-to-issues",
                      :original      => "bc6ae6262eef79aab70c151bfacde1eb8e66512f",
-                     :insert_top    => "div.contextual" do
-  %(
+                     :insert_top    => "div.contextual",
+                     :text          => <<eos
     <% content_for :header_tags do %>
       <%= stylesheet_link_tag "reminders", :plugin => "redmine_reminders" %>
     <% end %>
-    <%= link_to l(:label_reminder_add), new_reminder_path(:back_url => issues_path),
+    <%= link_to l(:label_reminder_add), new_reminder_path(:back_url => project_issues_path(Project.first)),
                 :class => "icon icon-reminder",
-                :id => "new-reminder" if User.current.allowed_to?(:manage_reminders, nil, :global => true) %>
-  )
-end
+                :id => "new-reminder" if User.current.allowed_to?(:manage_reminders, nil, :global => true) && controller.action_name == 'index' %>
+eos
 
 Deface::Override.new :virtual_path  => "issues/index",
                      :name          => "add-visible-reminders-on-issues",
