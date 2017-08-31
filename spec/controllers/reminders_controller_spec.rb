@@ -78,6 +78,6 @@ describe RemindersController do
                            :start_at => "2013-03-01", :end_at => "2013-03-03")
     delete :destroy, :id => rem.id
     expect(response).to redirect_to(reminders_path)
-    assert_nil Reminder.find_by_text("ToBeDestroyed")
+    expect(Reminder.find_by_text("ToBeDestroyed")).to be_nil
   end
 end
