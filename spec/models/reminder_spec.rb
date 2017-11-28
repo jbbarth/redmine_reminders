@@ -42,9 +42,14 @@ describe "Reminder" do
     assert Reminder.create(opts).in?(Reminder.visible)
   end
 
-
   it "should #color" do
     expect(Reminder.new.color).to eq "salmon"
     expect(Reminder.new(:color => "foo").color).to eq "foo"
+  end
+
+  it "should validates text lenght" do
+    too_long_text = "Once upon a time, in 1936, a British monarch named Edward VIII was forbidden to marry his divorced American girlfriend and also be king, so he renounced the throne, moved with her to France and lived not-so-happily ever after. Nearly 20 years later, forced to make a similarly unpleasant choice, Edward’s niece Margaret opted to keep her title but jettison her (also divorced) boyfriend. She ended up herself divorced from the man she married in the boyfriend’s place."
+    expect(Reminder.new(:text => "foo", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now).valid?).to be true
+    expect(Reminder.new(:text => too_long_text, :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now).valid?).to be false
   end
 end
