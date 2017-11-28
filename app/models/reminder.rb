@@ -4,6 +4,7 @@ class Reminder < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :text, :start_at, :end_at, :user_id
+  validates_length_of :text, maximum: 254
 
   attr_accessible :text, :user_id, :start_at, :end_at, :visibility, :color, :finished
 
