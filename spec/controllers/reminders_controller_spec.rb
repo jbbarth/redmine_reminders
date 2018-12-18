@@ -13,7 +13,7 @@ describe RemindersController do
 
   before do
     @controller = RemindersController.new
-    @request    = ActionController::TestRequest.new
+    @request    = ActionController::TestRequest.create(RemindersController)
     @response   = ActionController::TestResponse.new
     User.current = nil
     @request.session[:user_id] = 1 # admin

@@ -1,4 +1,6 @@
 class Reminder < ActiveRecord::Base
+  include Redmine::SafeAttributes
+
   unloadable
 
   belongs_to :user
@@ -6,7 +8,7 @@ class Reminder < ActiveRecord::Base
   validates_presence_of :text, :start_at, :end_at, :user_id
   validates_length_of :text, maximum: 254
 
-  attr_accessible :text, :user_id, :start_at, :end_at, :visibility, :color, :finished
+  safe_attributes :text, :user_id, :start_at, :end_at, :visibility, :color, :finished
 
   scope :current, lambda{ where("finished = ? AND start_at <= ? AND end_at >= ?",
                                 false, Date.today, Date.today) }

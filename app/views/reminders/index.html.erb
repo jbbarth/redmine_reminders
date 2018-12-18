@@ -18,7 +18,7 @@
   </tr></thead>
   <tbody>
 <% @reminders.each do |reminder| %>
-  <tr class="<%= cycle("odd", "even") %>">
+  <tr>
     <td class="id"><%= reminder.id %></td>
     <td class="text"><%= textilizable reminder.text %></td>
     <td class="start_at"><%= format_date(reminder.start_at) %></td>

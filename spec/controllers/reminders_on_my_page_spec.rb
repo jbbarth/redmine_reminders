@@ -9,7 +9,7 @@ describe "RemindersOnMyPage", type: :integration do
 
   before do
     @controller = MyController.new
-    @request    = ActionController::TestRequest.new
+    @request    = ActionController::TestRequest.create(RemindersController)
     @response   = ActionController::TestResponse.new
     User.current = nil
     @request.session[:user_id] = 1 # admin

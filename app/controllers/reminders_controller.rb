@@ -1,8 +1,8 @@
 class RemindersController < ApplicationController
   unloadable
 
-  before_filter :authorize_global
-  before_filter :find_reminder, :except => [:new, :create, :index]
+  before_action :authorize_global
+  before_action :find_reminder, :except => [:new, :create, :index]
 
   def index
     scope = Reminder
