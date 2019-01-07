@@ -21,7 +21,8 @@ class RemindersController < ApplicationController
   end
   
   def create
-    @reminder = Reminder.new(params[:reminder])
+    @reminder = Reminder.new
+    @reminder.safe_attributes = params[:reminder]
     @reminder.user_id = User.current.id
     if @reminder.save
       flash[:notice] = l(:notice_successful_create)
@@ -35,7 +36,8 @@ class RemindersController < ApplicationController
   end
   
   def update
-    if @reminder.update_attributes(params[:reminder].merge(:user_id => User.current.id))
+    @reminder.safe_attributes = params[:reminder].merge(:user_id => User.current.id)
+    if @reminder.save
       flash[:notice] = l(:notice_successful_update)
       redirect_back_or_default reminders_path
     else
