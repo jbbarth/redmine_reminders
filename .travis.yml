@@ -1,6 +1,8 @@
-sudo: false
+sudo: required
 
 language: ruby
+
+dist: xenial
 
 rvm:
   - 2.6
@@ -17,8 +19,12 @@ env:
     - REDMINE_VER=4.1.1
     - REDMINE_VER=4.0.7
 
+services:
+  - xvfb
+
 addons:
   postgresql: "9.4"
+  chrome: stable
 
 before_install:
   # Allow imagemagick to read PDF files
@@ -35,6 +41,15 @@ before_script:
   - sudo apt-get update
   - sudo apt-get install -y ghostscript
   - psql -c 'create database travis_ci_test;' -U postgres
+  # Install Chrome Web Driver for System specs in the browser
+  - gem install chromium
+  - wget https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - sudo apt-get install libnss3
+  - sudo apt-get --only-upgrade install google-chrome-stable
+  - sudo cp chromedriver /usr/local/bin/.
+  - sudo chmod +x /usr/local/bin/chromedriver
+  - export DISPLAY=:99.0
 
 script:
   - export TESTSPACE=`pwd`/testspace
