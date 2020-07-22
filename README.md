@@ -37,7 +37,7 @@ Test status
 [1]: https://travis-matrix-badges.herokuapp.com/repos/jbbarth/redmine_reminders/branches/master/1
 [2]: https://travis-matrix-badges.herokuapp.com/repos/jbbarth/redmine_reminders/branches/master/2
 [3]: https://travis-matrix-badges.herokuapp.com/repos/jbbarth/redmine_reminders/branches/master/3
-[5]: https://travis-ci.com/jbbarth/redmine_reminders
+[5]: https://travis-ci.org/jbbarth/redmine_reminders
 
 Contribute
 ----------
