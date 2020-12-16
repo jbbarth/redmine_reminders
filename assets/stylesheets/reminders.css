@@ -9,7 +9,7 @@
 .reminders { box-sizing:border-box; -moz-box-sizing:border-box; position:relative; }
 .reminders .reminder:nth-child(even) { margin-right:1%; }
 .reminders .reminder:last-child { margin-bottom:15px; }
-.reminder { margin:0 0 1%; padding:0; font-weight:bold; font-size:1.1em; display:inline-block; -moz-box-sizing:border-box; box-sizing:border-box; width:49.5%; float:left; }
+.reminder { margin:0 0 1%; padding:0; font-weight:bold; font-size:1.1em; display:inline-block; -moz-box-sizing:border-box; box-sizing:border-box; width:49.5%; float:left; padding: 5px 0px 0px 5px;}
 .reminder p { margin:0; padding:8px 10px 5px; }
 .reminder .info { font-size:80%; font-weight:normal; text-shadow:none; font-size:normal; margin:3px; color:#f8f8f8; text-align:right; }
 .redminder a, .reminder a:link, .reminder a:visited, .reminder a:hover { color:#fff !important; }
