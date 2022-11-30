@@ -52,4 +52,17 @@ describe "Reminder" do
     expect(Reminder.new(:text => "foo", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now).valid?).to be true
     expect(Reminder.new(:text => too_long_text, :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now).valid?).to be false
   end
+
+  it "should set anonymous user when destroy a user" do
+    reminder_test = Reminder.create!(:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now)
+    user_test = User.create(:login => "test", :firstname => 'test', :lastname => 'test',
+            :mail => 'test.test@test.fr', :language => 'fr')
+    reminder_test.user_id = user_test.id
+    reminder_test.save
+
+    user_test.destroy
+    reminder_test.reload
+    
+    expect(reminder_test.user_id).to eq(User.anonymous.id)   
+  end
 end
