@@ -1,5 +1,4 @@
 require "spec_helper"
-require File.expand_path('../../../app/overrides/my/page', __FILE__)
 
 describe "RemindersOnMyPage", type: :system do
 
@@ -8,7 +7,7 @@ describe "RemindersOnMyPage", type: :system do
            :projects_trackers, :roles, :member_roles,
            :members, :enabled_modules, :workflows
 
-  it "should see current reminders on /my/page" do
+  it "shows current reminders on /my/page" do
     Reminder.create!(:text => "Should see", :user_id => 1, :start_at => 2.days.ago, :end_at => 2.days.from_now)
     Reminder.create!(:text => "Should not see", :user_id => 1, :start_at => "2000-03-01", :end_at => "2000-03-03")
     log_user("admin", "admin")
