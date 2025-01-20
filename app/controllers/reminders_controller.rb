@@ -1,5 +1,4 @@
 class RemindersController < ApplicationController
-  unloadable
 
   before_action :authorize_global
   before_action :find_reminder, :except => [:new, :create, :index]
