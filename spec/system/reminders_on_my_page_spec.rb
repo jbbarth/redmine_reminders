@@ -12,6 +12,7 @@ describe "RemindersOnMyPage", type: :system do
     Reminder.create!(:text => "Should not see", :user_id => 1, :start_at => "2000-03-01", :end_at => "2000-03-03")
     log_user("admin", "admin")
     visit "/my/page"
+    expect(page).to have_content("My page")
     expect(page).to have_selector("#my-page")
     expect(page).to have_selector("div.reminder", text: "Should see")
     expect(page).to_not have_selector("div.reminder", text: "Should not see")
