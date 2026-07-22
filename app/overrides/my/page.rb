@@ -10,17 +10,14 @@ link_to_new_reminder = %(
 
 Deface::Override.new :virtual_path  => "my/page",
                      :name          => "add-new-reminder-link-to-my-page",
-                     :original      => "bc6ae6262eef79aab70c151bfacde1eb8e66512f",
                      :insert_top    => "div.contextual",
                      :text          => link_to_new_reminder
 Deface::Override.new :virtual_path  => "my/custom_page",
                      :name          => "add-new-reminder-link-to-my-custom-page",
-                     :original      => "bc6ae6262eef79aab70c151bfacde1eb8e66512f",
                      :insert_top    => "div.contextual",
                      :text          => link_to_new_reminder
 
 Deface::Override.new :virtual_path  => "my/page",
                      :name          => "add-visible-reminders-on-my-page",
-                     :original      => "78c1f1aeece8df938d731e6cc8561d73839a508b",
                      :insert_before => "#my-page",
                      :partial       => "reminders/boxes"

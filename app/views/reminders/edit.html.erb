@@ -1,7 +1,7 @@
 <div class=contextual>
-  <%= link_to l(:button_delete), reminder_path(@reminder),
+  <%= link_to sprite_icon('del', l(:button_delete)), reminder_path(@reminder),
               :data => {:confirm => l(:text_are_you_sure)},
-              :method => :delete, :class => 'icon icon-del'
+              :method => :delete
       #if User.current.allowed_to?(:delete_issues, @project)
   %>
 </div>

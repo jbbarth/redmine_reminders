@@ -26,10 +26,10 @@
     <td class="finished center"><%= checked_image reminder.finished? %></td>
     <td class="user"><%= reminder.user %><em class=info>(<%= format_time(reminder.updated_at) %>)</em></td>
     <td class="buttons">
-      <%= link_to l(:button_edit), edit_reminder_path(reminder), :class => "icon icon-edit" %>
-      <%= link_to l(:button_delete), reminder_path(reminder),
+      <%= link_to sprite_icon('edit', l(:button_edit)), edit_reminder_path(reminder) %>
+      <%= link_to sprite_icon('del', l(:button_delete)), reminder_path(reminder),
                   :data => {:confirm => l(:text_are_you_sure)},
-                  :method => :delete, :class => 'icon icon-del'
+                  :method => :delete
           #if User.current.allowed_to?(:delete_issues, @project)
       %>
     </td>
