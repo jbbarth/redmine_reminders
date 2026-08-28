@@ -8,6 +8,12 @@ Redmine::Plugin.register :redmine_reminders do
   url 'https://github.com/jbbarth/redmine_reminders'
   requires_redmine_plugin :redmine_base_rspec, :version_or_higher => '0.0.3' if Rails.env.test?
   requires_redmine_plugin :redmine_base_deface, :version_or_higher => '0.0.1'
+
+  # Patches to existing classes/modules
+  ActiveSupport::Reloader.to_prepare do
+    require_dependency 'redmine_reminders/user_patch'
+  end
+
   project_module :reminders do
     permission :view_reminders, { :reminders => [:index] }
     permission :manage_reminders, { :reminders => [:new, :create, :edit, :update, :destroy] }
